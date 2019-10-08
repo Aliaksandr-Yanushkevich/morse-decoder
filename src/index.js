@@ -39,15 +39,11 @@ const MORSE_TABLE = {
 
 function decode(expr) {
     // write your solution here
-// MY CODE BELOW
-let str = '000000001100101010100000000010**********0000000010';
+
 let inputArr = [];
-for (let i = 0; i < str.length; i += 10) { //cut input string into pieces for 10 characters 
-  inputArr.push(str.substr(i,10));
+for (let i = 0; i < expr.length; i += 10) { //cut input string into pieces for 10 characters 
+  inputArr.push(expr.substr(i,10));
 }
-console.log(inputArr);
-function decoder(inputArr) {
-  let str = '';
   let morse = [];
   
   for (let i = 0; i < inputArr.length; i++) { //look through every letter and transform in "." , "-" and " " 
@@ -66,13 +62,20 @@ function decoder(inputArr) {
         letter = '';
       }   
     }
-    morse.push(letter);
-    console.log(morse);
+    morse.push(letter); //contain all letter in ".-" form here
   }
-} 
-  
-  console.log(decoder(inputArr));
-// MY CODE ABOVE
-// module.exports = {
-//     decode
-// }
+  let answer = '';
+  for (let i = 0; i < morse.length; i++) { //decoded letters from morse table
+    if (MORSE_TABLE[morse[i]]) {
+      answer += MORSE_TABLE[morse[i]];
+    } else {
+      answer += ' ';
+    }
+    
+  }
+  return answer;
+
+}
+module.exports = {
+    decode
+}

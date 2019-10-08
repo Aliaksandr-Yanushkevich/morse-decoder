@@ -4,7 +4,8 @@
   "description": "Morse code decoder",
   "main": "test.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha test.js",
+    "npm run lint": "./node_modules/.bin/eslint index.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/romacher/morse-decoder#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^6.5.1",
     "mocha": "^6.2.0"
   }
 }
