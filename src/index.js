@@ -40,47 +40,39 @@ const MORSE_TABLE = {
 function decode(expr) {
     // write your solution here
 // MY CODE BELOW
-    let str = '000000001100101010100000000010**********';
-    let inputArr = [];
-    for (let i = 0; i < str.length; i += 10) {
-      inputArr.push(str.substr(i,10));
-    }
-    console.log(inputArr);
-    function decoder(inputArr) {
-      let str = '';
-      let morse = [];
-      
-      for (let i = 0; i < inputArr.length; i++) {
-        for (let j = 0; j < inputArr[i].length; j += 2) {
-          let letter = '';
-          switch(inputArr[i][j]) {
-            case '0':
-              break;
-            case '*':
-              morse.push(' ');
-              j += 10;
-              break;
-            case '1':
-              for (let n = j; n < inputArr[i].length; n += 2) {
-                if (inputArr[i][n+1] === '0') {
-                  letter += '.';
-                } else if (inputArr[i][n+1] === '1') {
-                  letter += '-';
-                }
-              }
-          morse.push(letter);
-          console.log('i = ' + i +' j=' + j);
-          console.log('letter=' + letter);
-          break;
-          }
-        }
-      }
-    }
-    console.log(decoder(inputArr));
-
-    
+let str = '000000001100101010100000000010**********0000000010';
+let inputArr = [];
+for (let i = 0; i < str.length; i += 10) { //cut input string into pieces for 10 characters 
+  inputArr.push(str.substr(i,10));
 }
+console.log(inputArr);
+function decoder(inputArr) {
+  let str = '';
+  let morse = [];
+  
+  for (let i = 0; i < inputArr.length; i++) { //look through every letter and transform in "." , "-" and " " 
+    let letter = '';
+    for (let j = 0; j < inputArr[i].length; j += 2) {
+      if (inputArr[i][j] ==='0') {
+        continue;
+      } else if (inputArr[i][j] ==='*') {
+        letter = ' ';
+        break;            
+      } else if (inputArr[i][j+1] ==='0') {
+        letter += '.';
+      } else if (inputArr[i][j+1] ==='1') {
+        letter += '-';
+      } else {
+        letter = '';
+      }   
+    }
+    morse.push(letter);
+    console.log(morse);
+  }
+} 
+  
+  console.log(decoder(inputArr));
 // MY CODE ABOVE
-module.exports = {
-    decode
-}
+// module.exports = {
+//     decode
+// }
